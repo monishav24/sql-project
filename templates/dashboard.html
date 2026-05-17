@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Telecom Management{% end block %}
+{% block page_title %}Dashboard Overview{% end block %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card card-metric bg-primary text-white p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-uppercase mb-1">Total Customers</h6>
+                    <h2 class="mb-0">{{ stats.total_customers }}</h2>
+                </div>
+                <i class="fa-solid fa-users fa-2x opacity-50"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-metric bg-success text-white p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-uppercase mb-1">Active SIMs</h6>
+                    <h2 class="mb-0">{{ stats.active_sims }}</h2>
+                </div>
+                <i class="fa-solid fa-sim-card fa-2x opacity-50"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-metric bg-warning text-dark p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-uppercase mb-1">Total Revenue</h6>
+                    <h2 class="mb-0">₹{{ stats.total_revenue }}</h2>
+                </div>
+                <i class="fa-solid fa-indian-rupee-sign fa-2x opacity-50"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card card-metric bg-info text-white p-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="text-uppercase mb-1">Active Towers</h6>
+                    <h2 class="mb-0">{{ stats.active_towers }}</h2>
+                </div>
+                <i class="fa-solid fa-tower-broadcast fa-2x opacity-50"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white">
+                <h5 class="mb-0"><i class="fa-solid fa-chart-line text-primary me-2"></i> Monthly Revenue Trend</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="revenueChart" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-white">
+                <h5 class="mb-0"><i class="fa-solid fa-chart-pie text-success me-2"></i> User Distribution</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="userChart" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% end block %}
+
+{% block scripts %}
+<script>
+    // Revenue Chart
+    const revCtx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(revCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Revenue (₹)',
+                data: [12000, 19000, 15000, 25000, 22000, 30000],
+                borderColor: '#0d6efd',
+                backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: { responsive: true }
+    });
+
+    // User Chart
+    const userCtx = document.getElementById('userChart').getContext('2d');
+    new Chart(userCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Prepaid 4G', 'Prepaid 5G', 'Postpaid 4G', 'Postpaid 5G'],
+            datasets: [{
+                data: [45, 25, 20, 10],
+                backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#0dcaf0']
+            }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+    });
+</script>
+{% end block %}

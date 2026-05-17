@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Billing - Telecom Management{% end block %}
+{% block page_title %}Billing & Payments{% end block %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-white">
+        <h5 class="mb-0"><i class="fa-solid fa-file-invoice-dollar text-success me-2"></i> Postpaid Bills</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>SIM Number</th>
+                        <th>Billing Month</th>
+                        <th>Amount Due</th>
+                        <th>GST (18%)</th>
+                        <th>Total Amount</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in bills %}
+                    <tr>
+                        <td>#BL{{ b.bill_id }}</td>
+                        <td>{{ b.sim_number }}</td>
+                        <td>{{ b.billing_month }}</td>
+                        <td>₹{{ b.amount_due }}</td>
+                        <td>₹{{ b.gst_amount }}</td>
+                        <td><strong>₹{{ b.total_amount }}</strong></td>
+                        <td>{{ b.due_date }}</td>
+                        <td>
+                            {% if b.status == 'Paid' %}
+                                <span class="badge bg-success">Paid</span>
+                            {% elif b.status == 'Overdue' %}
+                                <span class="badge bg-danger">Overdue</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark">Unpaid</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if b.status != 'Paid' %}
+                                <button class="btn btn-sm btn-success">Mark Paid</button>
+                            {% else %}
+                                <button class="btn btn-sm btn-secondary" disabled>Paid</button>
+                            {% endif %}
+                            <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-download"></i></button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="9" class="text-center">No bills found.</td>
+                    </tr>
+                    {% end for %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end block %}

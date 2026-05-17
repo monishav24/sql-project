@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Customers - Telecom Management{% end block %}
+{% block page_title %}Customer Management{% end block %}
+
+{% block content %}
+<div class="card shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h5 class="mb-0"><i class="fa-solid fa-users text-primary me-2"></i> All Customers</h5>
+        <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add Customer</button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>SIM Type</th>
+                        <th>Network</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in customers %}
+                    <tr>
+                        <td>{{ c.customer_id }}</td>
+                        <td>{{ c.first_name }} {{ c.last_name }}</td>
+                        <td>{{ c.phone_number if c.phone_number else 'No SIM' }}</td>
+                        <td>
+                            {% if c.sim_type == 'Prepaid' %}
+                                <span class="badge bg-info">{{ c.sim_type }}</span>
+                            {% elif c.sim_type == 'Postpaid' %}
+                                <span class="badge bg-warning text-dark">{{ c.sim_type }}</span>
+                            {% else %}
+                                - 
+                            {% endif %}
+                        </td>
+                        <td>{{ c.network_type if c.network_type else '-' }}</td>
+                        <td>
+                            {% if c.customer_status == 'Active' %}
+                                <span class="badge bg-success">Active</span>
+                            {% else %}
+                                <span class="badge bg-danger">Inactive</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+                            <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center">No customers found. (Have you run database.sql?)</td>
+                    </tr>
+                    {% end for %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% end block %}
