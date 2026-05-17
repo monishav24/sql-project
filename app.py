@@ -6,10 +6,10 @@ app = Flask(__name__)
 app.secret_key = 'telecom_secret_key_2026'
 
 # Database Connection Details
-DB_HOST = 'localhost'
-DB_USER = 'root'
-DB_PASSWORD = '' # Update with your MySQL password
-DB_NAME = 'telecom_db'
+DB_HOST = os.environ.get('DB_HOST', 'localhost')
+DB_USER = os.environ.get('DB_USER', 'root')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '') # Update with your MySQL password
+DB_NAME = os.environ.get('DB_NAME', 'telecom_db')
 
 def get_db_connection():
     try:
