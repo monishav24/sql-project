@@ -1,0 +1,70 @@
+:root {
+    --primary-blue: #0d6efd;
+    --dark-blue: #042e6f;
+    --light-blue: #e9ecef;
+    --sidebar-bg: #212529;
+    --sidebar-hover: #343a40;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+}
+
+.sidebar {
+    height: 100vh;
+    background-color: var(--sidebar-bg);
+    color: white;
+    padding-top: 20px;
+    position: fixed;
+    width: 250px;
+}
+
+.sidebar .nav-link {
+    color: #c2c7d0;
+    margin-bottom: 10px;
+    padding: 10px 20px;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background-color: var(--sidebar-hover);
+    color: white;
+    border-radius: 5px;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.card-metric {
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.card-metric:hover {
+    transform: translateY(-5px);
+}
+
+.navbar {
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+/* Login Page specific */
+.login-body {
+    background-color: var(--dark-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}

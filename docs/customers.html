@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customers - Telecom Management</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h4 class="text-center mb-4"><i class="fa-solid fa-tower-cell text-primary"></i> Telecom Pro</h4>
+            <ul class="nav flex-column px-3">
+                <li class="nav-item">
+                    <a class="nav-link " href="index.html">
+                        <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="customers.html">
+                        <i class="fa-solid fa-users me-2"></i> Customers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="towers.html">
+                        <i class="fa-solid fa-tower-broadcast me-2"></i> Network Towers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="billing.html">
+                        <i class="fa-solid fa-file-invoice-dollar me-2"></i> Billing & Payments
+                    </a>
+                </li>
+                <li class="nav-item mt-5">
+                    <a class="nav-link text-danger" href="#">
+                        <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content w-100">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light rounded px-3 mb-4">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">Customer Management</span>
+                    <div class="d-flex align-items-center">
+                        <span class="me-3">Welcome, <strong>Admin</strong></span>
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=0d6efd&color=fff" class="rounded-circle" width="35" alt="Avatar">
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Block -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><i class="fa-solid fa-users text-primary me-2"></i> All Customers</h5>
+                    <button class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> Add Customer</button>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Phone Number</th>
+                                    <th>SIM Type</th>
+                                    <th>Network</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1001</td>
+                                    <td>Rahul Sharma</td>
+                                    <td>+91 9876543210</td>
+                                    <td>
+                                        <span class="badge bg-info">Prepaid</span>
+                                    </td>
+                                    <td>5G</td>
+                                    <td>
+                                        <span class="badge bg-success">Active</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1002</td>
+                                    <td>Priya Patel</td>
+                                    <td>+91 9123456789</td>
+                                    <td>
+                                        <span class="badge bg-warning text-dark">Postpaid</span>
+                                    </td>
+                                    <td>4G</td>
+                                    <td>
+                                        <span class="badge bg-success">Active</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1003</td>
+                                    <td>Amit Singh</td>
+                                    <td>No SIM</td>
+                                    <td>
+                                        - 
+                                    </td>
+                                    <td>-</td>
+                                    <td>
+                                        <span class="badge bg-danger">Inactive</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1004</td>
+                                    <td>Neha Gupta</td>
+                                    <td>+91 9988776655</td>
+                                    <td>
+                                        <span class="badge bg-info">Prepaid</span>
+                                    </td>
+                                    <td>5G</td>
+                                    <td>
+                                        <span class="badge bg-success">Active</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1005</td>
+                                    <td>Vikram Reddy</td>
+                                    <td>+91 9871234560</td>
+                                    <td>
+                                        <span class="badge bg-warning text-dark">Postpaid</span>
+                                    </td>
+                                    <td>5G</td>
+                                    <td>
+                                        <span class="badge bg-success">Active</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-pen"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

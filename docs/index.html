@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Telecom Management</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="d-flex">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h4 class="text-center mb-4"><i class="fa-solid fa-tower-cell text-primary"></i> Telecom Pro</h4>
+            <ul class="nav flex-column px-3">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">
+                        <i class="fa-solid fa-gauge me-2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="customers.html">
+                        <i class="fa-solid fa-users me-2"></i> Customers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="towers.html">
+                        <i class="fa-solid fa-tower-broadcast me-2"></i> Network Towers
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="billing.html">
+                        <i class="fa-solid fa-file-invoice-dollar me-2"></i> Billing & Payments
+                    </a>
+                </li>
+                <li class="nav-item mt-5">
+                    <a class="nav-link text-danger" href="#">
+                        <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content w-100">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light rounded px-3 mb-4">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1">Dashboard Overview</span>
+                    <div class="d-flex align-items-center">
+                        <span class="me-3">Welcome, <strong>Admin</strong></span>
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=0d6efd&color=fff" class="rounded-circle" width="35" alt="Avatar">
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Content Block -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card card-metric bg-primary text-white p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase mb-1">Total Customers</h6>
+                                <h2 class="mb-0">12,543</h2>
+                            </div>
+                            <i class="fa-solid fa-users fa-2x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-metric bg-success text-white p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase mb-1">Active SIMs</h6>
+                                <h2 class="mb-0">9,876</h2>
+                            </div>
+                            <i class="fa-solid fa-sim-card fa-2x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-metric bg-warning text-dark p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase mb-1">Total Revenue</h6>
+                                <h2 class="mb-0">₹2,450,000</h2>
+                            </div>
+                            <i class="fa-solid fa-indian-rupee-sign fa-2x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card card-metric bg-info text-white p-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-uppercase mb-1">Active Towers</h6>
+                                <h2 class="mb-0">145</h2>
+                            </div>
+                            <i class="fa-solid fa-tower-broadcast fa-2x opacity-50"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0"><i class="fa-solid fa-chart-line text-primary me-2"></i> Monthly Revenue Trend</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="revenueChart" height="100"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-white">
+                            <h5 class="mb-0"><i class="fa-solid fa-chart-pie text-success me-2"></i> User Distribution</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="userChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Revenue Chart
+        const revCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Revenue (₹)',
+                    data: [1200000, 1900000, 1500000, 2500000, 2200000, 3000000],
+                    borderColor: '#0d6efd',
+                    backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // User Chart
+        const userCtx = document.getElementById('userChart').getContext('2d');
+        new Chart(userCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Prepaid 4G', 'Prepaid 5G', 'Postpaid 4G', 'Postpaid 5G'],
+                datasets: [{
+                    data: [45, 25, 20, 10],
+                    backgroundColor: ['#0d6efd', '#198754', '#ffc107', '#0dcaf0']
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
+        });
+    </script>
+</body>
+</html>
